@@ -18,4 +18,5 @@
 @import "assets/vendor/perfect-scrollbar/perfect-scrollbar.css";
 
 /* Main CSS */
-@import "assets/css/theme.css";
+/* @import "assets/css/theme.css"; */
+@import "assets/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.css";
