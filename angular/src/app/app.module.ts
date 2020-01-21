@@ -22,6 +22,7 @@ import {AuthGuardService} from './shared/auth/auth-guard.service';
 
 
 import { HeaderModule } from './shared/header/header.module';
+import { SidebarModule } from './shared/sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
 
 
@@ -60,6 +61,7 @@ import { AboutModule } from './pages/about/about.module';
     AboutModule,
     FormsModule,
     HeaderModule,
+    SidebarModule,
     FooterModule
   ],
   providers: [

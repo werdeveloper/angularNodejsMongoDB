@@ -1,32 +1,64 @@
-<app-header></app-header>
-<div class="container">
-    <h2>Users List</h2>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of allUser">
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.phone }}</td>
-                <td>
-                    <a style="padding-right:5px" [routerLink]="['/userDetail/'+user.id]"><button
-                            class="btn-default">Detail</button></a>
-                    <a style="padding-right:5px" [routerLink]="['/userEdit/'+user.id]"><button
-                            class="btn-default">Edit</button></a>
-                    <button (click)="openConfirmationDialog(user.id)" style="padding-right:5px"
-                        class="btn-default">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      <app-header></app-header>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">User Lists</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of allUser">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>
+                        <a [routerLink]="['/userDetail/'+user.id]" style="padding-right:5px">
+                            <button (click)="openConfirmationDialog(user.id)" class="btn btn-info btn-circle">
+                                <i class="fas fa-info"></i>
+                            </button>
+                        </a>
+                        <a [routerLink]="['/userEdit/'+user.id]" style="padding-right:5px">
+                            <button (click)="openConfirmationDialog(user.id)" class="btn btn-info btn-circle">
+                                <i class="fas fa-info"></i>
+                            </button>
+                        </a>
+                        <button (click)="openConfirmationDialog(user.id)" class="btn btn-danger btn-circle">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
 </div>
-<app-footer></app-footer>
+<!-- End of Page Wrapper -->

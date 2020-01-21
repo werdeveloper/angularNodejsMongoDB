@@ -5,8 +5,9 @@ import { AppRoutingModule } from './../../app-routing.module';
 import { ConfirmationDialogService } from '../../shared/confirmation-dialog/confirmation-dialog.service';
 
 import { HeaderModule } from './../../shared/header/header.module';
+import { SidebarModule } from './../../shared/sidebar/sidebar.module';
 import { FooterModule } from './../../shared/footer/footer.module';
- 
+
 @NgModule({
   declarations: [UserListComponent],
   providers:[ConfirmationDialogService],
@@ -14,6 +15,7 @@ import { FooterModule } from './../../shared/footer/footer.module';
     AppRoutingModule,
     CommonModule,
     HeaderModule,
+    SidebarModule,
     FooterModule
   ]
 })
