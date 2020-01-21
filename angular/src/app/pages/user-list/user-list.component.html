@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="container">
+    <h2>Users List</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of allUser">
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    <a style="padding-right:5px" [routerLink]="['/userDetail/'+user.id]"><button
+                            class="btn-default">Detail</button></a>
+                    <a style="padding-right:5px" [routerLink]="['/userEdit/'+user.id]"><button
+                            class="btn-default">Edit</button></a>
+                    <button (click)="openConfirmationDialog(user.id)" style="padding-right:5px"
+                        class="btn-default">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<app-footer></app-footer>

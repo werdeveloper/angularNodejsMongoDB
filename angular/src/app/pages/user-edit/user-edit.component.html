@@ -1,0 +1,54 @@
+<h2>Update User Detail</h2>
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="col-sm-10">
+            <input type="text" [(ngModel)]="getUserDetail.name" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }"  placeholder="Enter name" formControlName="name">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">First Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+            <input type="text" [(ngModel)]="getUserDetail.email" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter email" 
+            formControlName="email">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="phone">Phone:</label>
+        <div class="col-sm-10">
+            <input type="text" [(ngModel)]="getUserDetail.phone" pattern="[0-9]*" minlength="10" maxlength="10" 
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" 
+            placeholder="Enter phone number" formControlName="phone">
+            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                <div *ngIf="f.phone.errors.required">Phone Number is required</div>                
+                <div *ngIf="f.phone.errors.minlength">Phone must be a valid phone number</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-10">
+                <input type="text" [(ngModel)]="getUserDetail.password" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Enter password"
+                 formControlName="password">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password  is required</div>                                             
+                    <div *ngIf="f.password.errors.minlength">Phone must be 6 character</div>
+                </div>
+            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-primary mr-1" ng-disabled="updateForm.$invalid">Update</button>            
+        </div>
+    </div>    
+</form>

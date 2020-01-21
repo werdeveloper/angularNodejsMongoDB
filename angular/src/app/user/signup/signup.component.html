@@ -1,0 +1,65 @@
+<div class="page-wrapper">
+    <div class="page-content--bge5">
+        <div class="container">
+            <div class="login-wrap">
+                <div class="login-content">
+                    <div class="login-logo">
+                        <a href="#">
+                            <img src="assets/images/icon/logo.png" alt="CoolAdmin">
+                        </a>
+                    </div>
+                    <div class="login-form">
+                        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label class="control-label" for="name">Name</label>
+                                <input class="form-control au-input au-input--full"
+                                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                                    placeholder="Enter name" formControlName="name">
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="email">Email Address</label>
+                                <input class="form-control au-input au-input--full"
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter email"
+                                    formControlName="email">
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="name">Phone</label>
+                                <input class="form-control au-input au-input--full" pattern="[0-9]*" minlength="10"
+                                    maxlength="10" type="text" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+                                    placeholder="Enter phone number" formControlName="phone">
+                                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                    <div *ngIf="f.phone.errors.required">Phone Number is required</div>
+                                    <div *ngIf="f.phone.errors.minlength">Phone must be a valid phone number</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="password">Password</label>
+                                <input class="form-control au-input au-input--full" type="password"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                    placeholder="Enter password" formControlName="password">
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Phone must be 6 character</div>
+                                </div>
+                            </div>
+                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">register</button>
+                        </form>
+                        <div class="register-link">
+                            <p>
+                                Already have account?
+                                <a [routerLink]="['/']">Sign In</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

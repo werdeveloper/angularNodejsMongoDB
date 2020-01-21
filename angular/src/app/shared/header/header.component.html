@@ -1,0 +1,14 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">WebSiteName</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
+        <li><a [routerLink]="['/about']" routerLinkActive="active">About</a></li>
+        <li><a [routerLink]="['/contactus']" routerLinkActive="active">Contact Us</a></li>
+        <li><a [routerLink]="['/userlist']" routerLinkActive="active">All users</a></li>
+        <li><a href="JavaScript:void(0)" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>

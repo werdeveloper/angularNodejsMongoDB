@@ -1,0 +1,12 @@
+.navbar{
+    background: #8e404014 !important;
+}
+ul.nav.navbar-nav a {
+    padding: 10px !important;
+}
+ul.nav.navbar-nav , ul.nav.navbar-nav li {
+    display: inline-block !important;
+}
+ul.nav.navbar-nav li .active {
+    color: red;
+}
