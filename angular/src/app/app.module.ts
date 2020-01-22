@@ -29,6 +29,7 @@ import { FooterModule } from './shared/footer/footer.module';
 // pages component
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { ForgotComponent } from './user/forgot/forgot.component';
 // users
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
@@ -45,6 +46,7 @@ import { AboutModule } from './pages/about/about.module';
     ConfirmationDialogComponent,
     LoginComponent,
     SignupComponent,
+    ForgotComponent,
     UserListComponent,
     UserDetailComponent,
     UserEditComponent

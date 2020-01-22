@@ -20,8 +20,10 @@ let userCreateFunction = (req, res) => {
     console.log("call create user api");
     const encryptPassword = bcypt.hashSync(req.body.password, saltRounds);
     let userCreateData = {
-        name: req.body.name,
+        fname: req.body.fname,
+        lname: req.body.lname,
         email: req.body.email,
+        phone: req.body.phone,
         password: encryptPassword
     };
     //console.log(userCreateData);
@@ -115,13 +117,15 @@ let userLoginFunction = (req, res) => {
                     });
                 } else {
                     const getUserId = result.id;
-                    const getUserName = result.name;
+                    const getUserFirstName = result.fname;
+                    const getUserLastName = result.lname;
                     const getUserEmail = result.email;
                     const getUseRole = 1;
                     let token = jwt.sign(
                         {
                             userId: getUserId,
-                            userName: getUserName,
+                            userFirstName: getUserFirstName,
+                            userLastName: getUserLastName,
                             userEmail: getUserEmail,
                             userRole: getUseRole
                         },
@@ -179,7 +183,7 @@ let userListFunction = (req, res) => {
 
 let userDetailFunction = (req, res) => {
     console.log("call user detail api", req.params.id);
-    User.findById('5d7d1f7a3f6416223bf94ff7', (err, result) => {
+    User.findById('5e0d8ecd9ddaa20d6438107a', (err, result) => {
         if (err) {
             res.status(400).send({
                 status: 0,
@@ -244,5 +248,4 @@ module.exports = {
     logout: userLogoutFunction,
     //loginValidation: loginValidation,
     //loginValidationFunction: loginValidationFunction
-
 }

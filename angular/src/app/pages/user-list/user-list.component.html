@@ -20,7 +20,8 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>F Name</th>
+                    <th>L Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Action</th>
@@ -28,22 +29,23 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of allUser">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.name }}</td>
+                    <td>{{ user._id }}</td>
+                    <td>{{ user.fname }}</td>
+                    <td>{{ user.lname }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.phone }}</td>
                     <td>
-                        <a [routerLink]="['/userDetail/'+user.id]" style="padding-right:5px">
-                            <button (click)="openConfirmationDialog(user.id)" class="btn btn-info btn-circle">
+                        <a [routerLink]="['/userDetail/'+user._id]" target="_blank" style="padding-right:5px">
+                            <button class="btn btn-info btn-circle">
                                 <i class="fas fa-info"></i>
                             </button>
                         </a>
-                        <a [routerLink]="['/userEdit/'+user.id]" style="padding-right:5px">
-                            <button (click)="openConfirmationDialog(user.id)" class="btn btn-info btn-circle">
+                        <a [routerLink]="['/userEdit/'+user._id]" target="_blank" style="padding-right:5px">
+                            <button class="btn btn-info btn-circle">
                                 <i class="fas fa-info"></i>
                             </button>
                         </a>
-                        <button (click)="openConfirmationDialog(user.id)" class="btn btn-danger btn-circle">
+                        <button (click)="openConfirmationDialog(user._id)" class="btn btn-danger btn-circle">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>

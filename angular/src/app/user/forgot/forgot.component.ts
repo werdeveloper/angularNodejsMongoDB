@@ -6,19 +6,17 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { HttpService } from '../../services/http.service';
 import { ToastrMessageService } from '../../services/toastr-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
-// import custom validator to validate that password and confirm password fields match
-import { MustMatch } from './must-match.validator';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  selector: 'app-forgot',
+  templateUrl: './forgot.component.html',
+  styleUrls: ['./forgot.component.css'],
   providers: [ToastrMessageService]
 })
-export class SignupComponent implements OnInit {
+export class ForgotComponent implements OnInit {
 
-  signupForm: FormGroup;
+  forgotForm: FormGroup;
   submitted = false;
 
   constructor(
@@ -32,47 +30,37 @@ export class SignupComponent implements OnInit {
 
   // On Page load
   ngOnInit() {
-    this.signupForm = this.formBuilder.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
-    },
-    { validator: MustMatch('password', 'confirmPassword') });
+    this.forgotForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
   }
 
   // Convenience getter for easy access to form fields
   get f() {
-    return this.signupForm.controls;
+    return this.forgotForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.signupForm.invalid) {
+    if (this.forgotForm.invalid) {
       return;
     }
     // for create
     const userPostDatas = {
-      fname: this.signupForm.value.fname,
-      lname: this.signupForm.value.lname,
-      email: this.signupForm.value.email,
-      phone: this.signupForm.value.phone,
-      password: this.signupForm.value.password
+      email: this.forgotForm.value.email
     };
     // console.log(userPostDatas);
-    this.createUserDetails(userPostDatas);
+    this.forgotPassword(userPostDatas);
   }
 
   onReset() {
     this.submitted = false;
-    this.signupForm.reset();
+    this.forgotForm.reset();
   }
 
-  createUserDetails(userPostDatas) {
-    return this.httpService.post('/users/createUser/', userPostDatas)
+  forgotPassword(userPostDatas) {
+    /* return this.httpService.post('/users/passwordForgot/', userPostDatas)
       .subscribe(
         (data: { status: number, response: string, data: Array<any> }) => {
           console.log(data);
@@ -87,6 +75,6 @@ export class SignupComponent implements OnInit {
         (error) => {
           console.log(error);
         }
-      );
+      ); */
   }
 }

@@ -2,7 +2,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {SignupComponent} from './signup.component';
+import {ForgotComponent} from './forgot.component';
 
 @NgModule({
     imports: [
@@ -10,7 +10,7 @@ import {SignupComponent} from './signup.component';
         FormsModule,
         ReactiveFormsModule
     ],
-    declarations: [SignupComponent]
+    declarations: [ForgotComponent]
 })
-export class SignupModule {
+export class ForgotModule {
 }
