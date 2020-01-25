@@ -17,7 +17,7 @@ import { UserModel } from '../../model/userModel';
 })
 
 export class UserEditComponent implements OnInit {
-  getUserDetail: UserModel;  // User Model  
+  getUserDetail: UserModel;  // User Model
   updateForm: FormGroup;
   submitted = false;
   constructor(
@@ -25,21 +25,22 @@ export class UserEditComponent implements OnInit {
     private http: HttpClient,
     private httpService: HttpService,
     private route: ActivatedRoute,
-    private router:Router,
+    private router: Router,
     private _toastrMessageService: ToastrMessageService
   ) {
   }
 
-  ngOnInit(){
-    let id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
+  ngOnInit() {
+    // let id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
     // console.log(id);
     this.getUserDetail = new UserModel();   // Create object of User Model
-    this.getUserDetails(); 
-    this.updateForm = this.formBuilder.group({ 
-      name: ['', Validators.required],  
-      email: ['', [Validators.required, Validators.email]],  
+    this.getUserDetails();
+    this.updateForm = this.formBuilder.group({
+      fname: ['', Validators.required],
+      lname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      // password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
   // Convenience getter for easy access to form fields
@@ -55,28 +56,28 @@ export class UserEditComponent implements OnInit {
     }
     // for update
     const userId = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
-    let userPostDatas = {
-      name: this.updateForm.value.name,
+    const userPostDatas = {
+      fname: this.updateForm.value.fname,
+      lname: this.updateForm.value.lname,
       email: this.updateForm.value.email,
-      password: this.updateForm.value.password,
-      phone: this.updateForm.value.phone,
+      phone: this.updateForm.value.phone
     };
     // console.log(userPostDatas);
     this.updateUserDetails(userId, userPostDatas);
   }
 
   getUserDetails() {
-    let id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
+    const id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
     return this.httpService.get('/users/getUsers/' + id)
       .subscribe(
         (data: { status: number, response: string, data: Array<any> }) => {
           // console.log(data);
-          if (data.status === 1 && (data.data.length > 0)) {
+          if (data.status === 1) {
             this.getUserDetail = data.data[0];
             console.log('get user data on user edit page', this.getUserDetail);
-            this._toastrMessageService.typeSuccess('User record get successfully');              
+            this._toastrMessageService.typeSuccess('User record get successfully');
           } else {
-            this._toastrMessageService.typeError('User record is not get successfully');
+            this._toastrMessageService.typeError('User record is found');
           }
         },
         (error) => {
@@ -90,12 +91,12 @@ export class UserEditComponent implements OnInit {
       .subscribe(
         (data: { status: number, response: string, data: Array<any> }) => {
           console.log(data);
-          if (data.status === 1 && (data.data.length > 0)) {
+          if (data.status === 1) {
             this.getUserDetail = data.data[0];
             console.log('Get updated user data on user edit page', this.getUserDetail);
             this._toastrMessageService.typeSuccess('User record updated successfully');
           } else {
-            this._toastrMessageService.typeError('User record not upadted successfully');
+            this._toastrMessageService.typeError('User record is not upadted successfully');
           }
         },
         (error) => {

@@ -1,7 +1,8 @@
-export class UserModel { 
-    id: number = 0; 
-    name: string = '';     
-    email: string = ''; 
-    phone: string = ''; 
-    password: string = ''; 
+export class UserModel {
+    id = 0;
+    fname = '';
+    lname = '';
+    email = '';
+    phone = '';
+    password = '';
 }

@@ -19,37 +19,39 @@ export class UserDetailComponent implements OnInit {
 
   getUserDetail: UserModel;   // User Model
 
-  constructor(  
+  constructor(
     private http: HttpClient,
     private httpService: HttpService,
     private route: ActivatedRoute,
-    private router:Router,
+    private router: Router,
     private _toastrMessageService: ToastrMessageService
   ) { }
 
-  ngOnInit(){  
-    let id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
-    // console.log(id);  
+  ngOnInit() {
+    // let id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
+    // console.log(id);
     this.getUserDetail = new UserModel();   // Create object of User Model
-    this.getUserDetails();          
+    this.getUserDetails();
   }
 
   getUserDetails() {
-    let id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
-    return this.httpService.get('/users/getUsers/'+id)
+    const id = this.route.snapshot.paramMap.get('id');  // Get the Id from URL
+    return this.httpService.get('/users/getUsers/' + id)
       .subscribe(
           (data: { status: number, response: string, data: Array<any> }) => {
-            // console.log(data);
-            if (data.status === 1 && (data.data.length > 0) ) {
-              this.getUserDetail = data.data[0];                
-              console.log('get user data on user detail page', this.getUserDetail);                         
+            console.log('User Details API Response');
+            console.log(data);
+            if (data.status === 1 ) {
+              console.log(data.data);
+              this.getUserDetail = data.data[0];
+              // console.log('get user data on user detail page', this.getUserDetail);
               this._toastrMessageService.typeSuccess('User record get successfully');
-            } else{
-              this._toastrMessageService.typeError('User record get successfully');
+            } else {
+              this._toastrMessageService.typeError('User record is not found');
             }
           },
           (error) => {
-            console.log(error);             
+            console.log(error);
           }
         );
   }

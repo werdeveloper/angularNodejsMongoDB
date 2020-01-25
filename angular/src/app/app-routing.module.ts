@@ -10,6 +10,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
 import { AboutComponent } from './pages/about/about.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { UserEditComponent } from './pages/user-edit/user-edit.component';
 
 
 const routes: Routes = [
@@ -38,7 +40,7 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuardService]
   },
-  { 
+  {
     path: 'about',
     component: AboutComponent,
     pathMatch: 'full',
@@ -53,6 +55,18 @@ const routes: Routes = [
   {
     path: 'userlist',
     component: UserListComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'userDetail/:id',
+    component: UserDetailComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'userEdit/:id',
+    component: UserEditComponent,
     pathMatch: 'full',
     canActivate: [AuthGuardService]
   },
